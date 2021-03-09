@@ -1,11 +1,11 @@
 import React from 'react';
 
 const Comment = (props) => {
-    const {name, email} =props.comment;
+    const {id,name, email} =props.comment;
     return (
-        <p>
-            {name} :{email}
-        </p>
+  
+           <h1> {name} : {email} </h1>
+      
     );
 };
 

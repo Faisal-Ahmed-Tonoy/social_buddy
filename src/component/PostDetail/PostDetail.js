@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import Comment from '../Comment/Comment';
+ 
+
 
 const PostDetail = () => {
    
@@ -8,15 +10,16 @@ const PostDetail = () => {
     const [post,setPost]= useState({});
     const [comments,setComments] = useState([]);
     useEffect(() =>{
-        fetch(`https://jsonplaceholder.typicode.com/posts${id}`)
+        fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
         .then(res => res.json())
         .then(data => setPost(data));
     },[id])
-    useEffect(()=>{
+
+    useEffect( ()=>{
         
-        fetch(`https://jsonplaceholder.typicode.com/comments${id}`)
+        fetch(`https://jsonplaceholder.typicode.com/comments?postId=${id}`)
         .then(res => res.json())
-        .then(data => setComments(data));
+        .then(data => setComments(data))
 
     },[id])
     return (
@@ -24,12 +27,13 @@ const PostDetail = () => {
            <h1>This is post detail {id} </h1> 
            <h1>User posted{post.id}</h1>
            <p>title :{post.title}</p>
-          <p>NUmber of Comments : {comments.length}</p>
-          <p>Email : {comments.email}</p>
-         
-        
-      
-        </div>
+           <p>Number of Comments : {comments.length}</p>
+          
+           {
+               comments.map(comment => <Comment comment={comment}></Comment>)
+           }
+            
+          </div>
     );
 };
 

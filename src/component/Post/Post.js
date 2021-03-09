@@ -6,10 +6,10 @@ const Post = (props) => {
     const {id,title,body} = props.post;
    
     const history = useHistory();
-    const showComments = id =>{
+    const showComments = (id) => {
         const url=`post/${id}`;
         history.push(url);
-        console.log(id);
+      
     }
     return (
         <div>
